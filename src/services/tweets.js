@@ -7,16 +7,16 @@ const getTweetById = (id) => {
   return Tweet.getTweetById(id);
 };
 
-const createTweet = () => {
-  return;
+const createTweet = (newTweet) => {
+  return Tweet.createTweet(newTweet);
 };
 
-const updateTweet = () => {
-  return;
+const updateTweet = (tweet) => {
+  return Tweet.updateTweet(tweet);
 };
 
-const deleteTweet = () => {
-  return;
+const deleteTweet = (tweet) => {
+  return Tweet;
 };
 
 module.exports = {
