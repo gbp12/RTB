@@ -1,0 +1,16 @@
+{
+  "tweets": [
+    {
+      "id": "1",
+      "text": "Hello World this is my first tweet"
+    },
+    {
+      "id": "2",
+      "text": "Hello World 2"
+    },
+    {
+      "id": "3",
+      "text": "Hello World 3"
+    }
+  ]
+}
