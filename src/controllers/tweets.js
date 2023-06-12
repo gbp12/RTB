@@ -1,27 +1,27 @@
 const tweetService = require("../services/tweets");
 
-const getAllTweets = (req, res) => {
-  const allTweets = tweetService.getAllTweets();
+const getAllTweets = async (req, res) => {
+  const allTweets = await tweetService.getAllTweets();
   res.send({ data: allTweets });
 };
 
-const getTweetById = (req, res) => {
-  const tweet = tweetService.getTweetById(req.params.tweetId);
+const getTweetById = async (req, res) => {
+  const tweet = await tweetService.getTweetById(req.params.tweetId);
   res.send({ data: tweet });
 };
 
-const createTweet = (req, res) => {
-  const newTweet = tweetService.createTweet(req.body);
+const createTweet = async (req, res) => {
+  const newTweet = await tweetService.createTweet(req.body);
   res.send({ data: newTweet });
 };
 
-const updateTweet = (req, res) => {
-  const updatedTweet = tweetService.updateTweet(req.body);
+const updateTweet = async (req, res) => {
+  const updatedTweet = await tweetService.updateTweet(req.body);
   res.send({ data: updatedTweet });
 };
 
-const deleteTweet = (req, res) => {
-  const deletedTweet = tweetService.deleteTweet(req.body);
+const deleteTweet = async (req, res) => {
+  const deletedTweet = await tweetService.deleteTweet(req.body);
   res.send({ data: deletedTweet });
 };
 

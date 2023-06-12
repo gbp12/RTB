@@ -16,7 +16,7 @@ const updateTweet = (tweet) => {
 };
 
 const deleteTweet = (tweet) => {
-  return Tweet;
+  return Tweet.deleteTweet(tweet);
 };
 
 module.exports = {

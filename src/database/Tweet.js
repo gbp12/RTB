@@ -1,33 +1,29 @@
-const DB = require("./db");
-
-const getAllTweets = () => {
-  return DB.tweets;
+const pool = require("../../config/database");
+const getAllTweets = async () => {
+  var tweets = await pool.query("SELECT * FROM tweets");
+  return tweets.rows;
 };
 
-const getTweetById = (id) => {
-  return DB.tweets.find((tweet) => tweet.id === id);
+const getTweetById = async (id) => {
+  var tweet = await pool.query(`SELECT * FROM tweets WHERE id = ${id}`);
+  return tweet.rows[0];
 };
 
 const createTweet = (tweet) => {
-  DB.tweets.push(tweet);
+  pool.query(`INSERT INTO tweets (texto) VALUES ('${tweet.texto}')`);
   return tweet;
 };
 
-const updateTweet = (tweet) => {
-  const index = DB.tweets.findIndex((w) => w.id === tweet.id);
-  DB.tweets[index] = tweet;
+const updateTweet = async (tweet) => {
+  await pool.query(
+    `UPDATE tweets SET texto = '${tweet.texto}' WHERE id = ${tweet.id}`
+  );
   return tweet;
 };
 
-const deleteTweet = (tweet) => {
-  const index = DB.tweets.findIndex((w) => {
-    return parseInt(w.id) === parseInt(tweet.id);
-  });
-  if (index === -1) {
-    return "Tweet not found";
-  }
-  DB.tweets.splice(index, 1);
-  return "Tweet deleted";
+const deleteTweet = async (tweet) => {
+  await pool.query(`DELETE FROM tweets WHERE id = ${tweet.id}`);
+  return tweet;
 };
 
 module.exports = {

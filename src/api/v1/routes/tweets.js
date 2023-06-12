@@ -10,14 +10,7 @@ router.route("/:tweetId").get((req, res) => {
   tweetController.getTweetById(req, res);
 });
 router.route("/create").post([
-  [body("text").isLength({ min: 3 })],
   (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).send({ errors: errors.array() });
-    }
-    const data = matchedData(req);
-
     tweetController.createTweet(req, res);
   },
 ]);
