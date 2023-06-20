@@ -15,8 +15,8 @@ const updateTweet = (tweet) => {
   return Tweet.updateTweet(tweet);
 };
 
-const deleteTweet = (tweet) => {
-  return Tweet.deleteTweet(tweet);
+const deleteTweet = (id) => {
+  return Tweet.deleteTweet(id);
 };
 
 module.exports = {

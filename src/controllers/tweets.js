@@ -21,7 +21,7 @@ const updateTweet = async (req, res) => {
 };
 
 const deleteTweet = async (req, res) => {
-  const deletedTweet = await tweetService.deleteTweet(req.body);
+  const deletedTweet = await tweetService.deleteTweet(req.id);
   res.send({ data: deletedTweet });
 };
 

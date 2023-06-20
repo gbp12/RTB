@@ -21,9 +21,9 @@ const updateTweet = async (tweet) => {
   return tweet;
 };
 
-const deleteTweet = async (tweet) => {
-  await pool.query(`DELETE FROM tweets WHERE id = ${tweet.id}`);
-  return tweet;
+const deleteTweet = async (id) => {
+  await pool.query(`DELETE FROM tweets WHERE id = ${id}`);
+  return "tweet eliminado";
 };
 
 module.exports = {
