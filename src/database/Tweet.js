@@ -1,6 +1,10 @@
 const pool = require("../../config/database");
-const getAllTweets = async () => {
-  var tweets = await pool.query("SELECT * FROM tweets");
+const getAllTweets = async (tweetCount) => {
+  var tweets = await pool.query(
+    `
+    SELECT t.id , t.texto, u.id as userId, u.nombre as userName, u.email as userEmail FROM tweets t left join usuarios u on t.userid = u.id  ORDER BY fecha_creacion DESC OFFSET ${tweetCount} LIMIT 10;
+`
+  );
   return tweets.rows;
 };
 
@@ -10,7 +14,9 @@ const getTweetById = async (id) => {
 };
 
 const createTweet = (tweet) => {
-  pool.query(`INSERT INTO tweets (texto) VALUES ('${tweet.texto}')`);
+  pool.query(
+    `INSERT INTO tweets (texto, userid) VALUES ('${tweet.texto}', '${tweet.userId}' )`
+  );
   return tweet;
 };
 

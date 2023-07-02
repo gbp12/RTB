@@ -1,7 +1,9 @@
 const tweetService = require("../services/tweets");
-
+const decodificador = require("../services/decodificador.js");
 const getAllTweets = async (req, res) => {
-  const allTweets = await tweetService.getAllTweets();
+  const tweetCount = req.params.tweetCount;
+
+  const allTweets = await tweetService.getAllTweets(tweetCount);
   res.send({ data: allTweets });
 };
 
@@ -11,6 +13,9 @@ const getTweetById = async (req, res) => {
 };
 
 const createTweet = async (req, res) => {
+  const token = req.headers.authorization;
+  const decoded = decodificador.decodificarJWT(token);
+  req.body.userId = decoded.userId;
   const newTweet = await tweetService.createTweet(req.body);
   res.send({ data: newTweet });
 };

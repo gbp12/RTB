@@ -1,6 +1,6 @@
 const Tweet = require("../database/Tweet");
-const getAllTweets = () => {
-  return Tweet.getAllTweets();
+const getAllTweets = (tweetCount) => {
+  return Tweet.getAllTweets(tweetCount);
 };
 
 const getTweetById = (id) => {

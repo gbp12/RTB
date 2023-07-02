@@ -9,6 +9,7 @@ const app = express();
 const server = app.listen(port);
 const v1Routes = require("./api/v1/routes/index.js");
 const tweetRoutes = require("./api/v1/routes/tweets.js");
+const userRoutes = require("./api/v1/routes/users.js");
 const jtw = require("jsonwebtoken");
 const pool = require("../config/database");
 app.use(cors());
@@ -17,7 +18,7 @@ app.use(bodyParser.json());
 /* enrutamiento */
 app.use("/api/v1", v1Routes);
 app.use("/api/v1/tweets", tweetRoutes);
-
+app.use("/api/v1/users", userRoutes);
 app.post("/api/v1/login", async (req, res) => {
   const { username, password } = req.body;
   pool.query(
@@ -31,6 +32,7 @@ app.post("/api/v1/login", async (req, res) => {
               {
                 username: username,
                 password: password,
+                userId: result.rows[0].id,
               },
               "shhhElSecreto",
               {

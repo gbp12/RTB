@@ -24,7 +24,7 @@ const verifyJTW = (req, res, next) => {
   }
 };
 
-router.route("/").get(verifyJTW, (req, res) => {
+router.route("/:tweetCount").get(verifyJTW, (req, res) => {
   tweetController.getAllTweets(req, res);
 });
 router.route("/:tweetId").get(verifyJTW, (req, res) => {
