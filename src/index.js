@@ -21,7 +21,25 @@ app.use("/api/v1/tweets", tweetRoutes);
 app.use("/api/v1/users", userRoutes);
 app.post("/api/v1/login", async (req, res) => {
   const { username, password } = req.body;
-  pool.query(
+  /* FIXME: esto esta para tirar pa lante en el front */
+  if (username == "gonzalo" && password == 1234) {
+    const token = jtw.sign(
+      {
+        username: username,
+        password: password,
+        userId: 11,
+      },
+      "shhhElSecreto",
+      {
+        expiresIn: "1h",
+      }
+    );
+    res.status(200).json({
+      auth: true,
+      token: token,
+    });
+  }
+  /*  pool.query(
     `select * from usuarios WHERE usuarios.nombre = '${username}' ;`,
     (err, result) => {
       if (err) {
@@ -55,5 +73,5 @@ app.post("/api/v1/login", async (req, res) => {
         }
       }
     }
-  );
+  );*/
 });
